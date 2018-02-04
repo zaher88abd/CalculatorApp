@@ -9,56 +9,105 @@ public class MainActivity extends AppCompatActivity {
 
     char operation = '!';
     boolean isNewEquation = true;
+    boolean isFlatNumber = false;
     TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        textView = findViewById(R.id.textView);
+        textView = (TextView) findViewById(R.id.textView);
     }
 
     public void btnClick(View view) {
         switch (view.getId()) {
             case R.id.btn_0:
-                enterNumer(0);
+                enterNumber("0");
                 break;
             case R.id.btn_1:
-                enterNumer(1);
+                enterNumber("1");
                 break;
             case R.id.btn_2:
-                enterNumer(2);
+                enterNumber("2");
                 break;
             case R.id.btn_3:
-                enterNumer(3);
+                enterNumber("3");
                 break;
             case R.id.btn_4:
-                enterNumer(4);
+                enterNumber("4");
                 break;
             case R.id.btn_5:
-                enterNumer(5);
+                enterNumber("5");
                 break;
             case R.id.btn_6:
-                enterNumer(6);
+                enterNumber("6");
                 break;
             case R.id.btn_7:
-                enterNumer(7);
+                enterNumber("7");
                 break;
             case R.id.btn_8:
-                enterNumer(8);
+                enterNumber("8");
                 break;
             case R.id.btn_9:
-                enterNumer(9);
+                enterNumber("9");
+                break;
+            case R.id.btn_clear:
+                clear();
+                break;
+            case R.id.btn_clear_all:
+                clearAll();
+                break;
+            case R.id.btn_sum:
+                operation = '+';
+                break;
+            case R.id.btn_sub:
+                operation = '-';
+                break;
+            case R.id.btn_mult:
+                operation = '*';
+                break;
+            case R.id.btn_division:
+                operation = '/';
+                break;
+            case R.id.btn_sqr:
+                operation = 's';
+                break;
+            case R.id.btn_change:
+                operation = 'c';
+                break;
+            case R.id.btn_equal:
+                operation = '=';
+                break;
+            case R.id.btn_float:
+                enterFloatNumber();
                 break;
         }
     }
 
-    public void enterNumer(int num) {
+
+    private void clearAll() {
+
+    }
+
+    private void clear() {
+        textView.setText(getString(R.string.default_text));
+    }
+
+    private void enterFloatNumber() {
+        if (!isFlatNumber) {
+            textView.setText(textView.getText().toString() + ".");
+            isNewEquation = false;
+            isFlatNumber = true;
+        }
+
+    }
+
+    public void enterNumber(String num) {
         if (isNewEquation) {
             textView.setText(num);
             isNewEquation = false;
         } else {
-            textView.setText((String) textView.getText() + num);
+            textView.setText(textView.getText().toString() + num);
         }
     }
 }
