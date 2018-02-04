@@ -14,9 +14,21 @@
         android:gravity="center"
         android:orientation="horizontal">
 
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:background="@color/whit"
+            android:enabled="false"
+            android:lines="1"
+            android:padding="10dp"
+            android:textAlignment="textEnd"
+            android:textColor="@color/text_color"
+            android:textSize="50sp" />
+
         <TextView
             android:id="@+id/textView"
-            android:layout_width="400dp"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:background="@color/whit"
             android:enabled="false"

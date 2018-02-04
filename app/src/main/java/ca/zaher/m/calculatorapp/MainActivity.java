@@ -7,19 +7,18 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    char operation = '!';
-    boolean isNewEquation = true;
-    boolean isFlatNumber = false;
-    double temp;
+    char operation = '!'; // to save teh operation
+    boolean isNewEquation = true; // to know start write for begin
+    boolean isFlatNumber = false; // to know the number is has float point
+    double temp; // to save the number
     TextView textView;
-    TextView tv_operation;
+    //// TODO: 2018-02-04 view operation sighn
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         textView = findViewById(R.id.textView);
-        tv_operation = findViewById(R.id.tv_operation);
     }
 
     public void btnClick(View view) {
@@ -73,13 +72,14 @@ public class MainActivity extends AppCompatActivity {
                 enterOperation('/');
                 break;
             case R.id.btn_sqr:
-                enterOperation('s');
+                textView.setText(String.valueOf(Math.sqrt(Double.parseDouble(textView.getText().toString()))));
+
                 break;
             case R.id.btn_change:
-                operation = 'c';
+                textView.setText(String.valueOf(-1 * Double.parseDouble(textView.getText().toString())));
                 break;
             case R.id.btn_equal:
-                operation = '=';
+                showResult();
                 break;
             case R.id.btn_float:
                 enterFloatNumber();
@@ -87,16 +87,35 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void showResult() {
+        if (operation != '!' && !isNewEquation)
+            switch (operation) {
+                case '+':
+                    textView.setText(String.valueOf(temp + Double.parseDouble(textView.getText().toString())));
+                    break;
+                case '-':
+                    textView.setText(String.valueOf(temp - Double.parseDouble(textView.getText().toString())));
+                    break;
+                case '*':
+                    textView.setText(String.valueOf(temp * Double.parseDouble(textView.getText().toString())));
+                    break;
+                case '/':
+                    if (!textView.getText().toString().equals("0"))
+                        textView.setText(String.valueOf(temp / Double.parseDouble(textView.getText().toString())));
+                    break;
+            }
+        operation = '!';
+        isNewEquation = true;
+    }
+
     private void enterOperation(char c) {
-        if (operation == '!' && isNewEquation == false) {
+        if (operation == '!' && !isNewEquation) {
             operation = c;
-            tv_operation.setText(String.valueOf(c));
             isNewEquation = true;
             temp = Double.parseDouble(textView.getText().toString());
-        } else if (operation != '!' && isNewEquation == true) {
+        } else if (operation != '!' && isNewEquation) {
             operation = c;
-            tv_operation.setText(String.valueOf(c));
-        } else if (operation != '!' && isNewEquation == false) {
+        } else if (operation != '!' && !isNewEquation) {
             switch (operation) {
                 case '+':
                     textView.setText(String.valueOf(temp + Double.parseDouble(textView.getText().toString())));
@@ -113,7 +132,6 @@ public class MainActivity extends AppCompatActivity {
                     break;
             }
             operation = c;
-            tv_operation.setText(String.valueOf(c));
             isNewEquation = true;
             temp = Double.parseDouble(textView.getText().toString());
 
@@ -126,10 +144,12 @@ public class MainActivity extends AppCompatActivity {
         operation = '!';
         isNewEquation = true;
         isFlatNumber = false;
+        temp = 0;
     }
 
     private void clear() {
         textView.setText(getString(R.string.default_text));
+        isNewEquation = true;
     }
 
     private void enterFloatNumber() {
