@@ -10,13 +10,16 @@ public class MainActivity extends AppCompatActivity {
     char operation = '!';
     boolean isNewEquation = true;
     boolean isFlatNumber = false;
+    double temp;
     TextView textView;
+    TextView tv_operation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        textView = (TextView) findViewById(R.id.textView);
+        textView = findViewById(R.id.textView);
+        tv_operation = findViewById(R.id.tv_operation);
     }
 
     public void btnClick(View view) {
@@ -58,19 +61,19 @@ public class MainActivity extends AppCompatActivity {
                 clearAll();
                 break;
             case R.id.btn_sum:
-                operation = '+';
+                enterOperation('+');
                 break;
             case R.id.btn_sub:
-                operation = '-';
+                enterOperation('-');
                 break;
             case R.id.btn_mult:
-                operation = '*';
+                enterOperation('*');
                 break;
             case R.id.btn_division:
-                operation = '/';
+                enterOperation('/');
                 break;
             case R.id.btn_sqr:
-                operation = 's';
+                enterOperation('s');
                 break;
             case R.id.btn_change:
                 operation = 'c';
@@ -84,9 +87,45 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void enterOperation(char c) {
+        if (operation == '!' && isNewEquation == false) {
+            operation = c;
+            tv_operation.setText(String.valueOf(c));
+            isNewEquation = true;
+            temp = Double.parseDouble(textView.getText().toString());
+        } else if (operation != '!' && isNewEquation == true) {
+            operation = c;
+            tv_operation.setText(String.valueOf(c));
+        } else if (operation != '!' && isNewEquation == false) {
+            switch (operation) {
+                case '+':
+                    textView.setText(String.valueOf(temp + Double.parseDouble(textView.getText().toString())));
+                    break;
+                case '-':
+                    textView.setText(String.valueOf(temp - Double.parseDouble(textView.getText().toString())));
+                    break;
+                case '*':
+                    textView.setText(String.valueOf(temp * Double.parseDouble(textView.getText().toString())));
+                    break;
+                case '/':
+                    if (!textView.getText().toString().equals("0"))
+                        textView.setText(String.valueOf(temp / Double.parseDouble(textView.getText().toString())));
+                    break;
+            }
+            operation = c;
+            tv_operation.setText(String.valueOf(c));
+            isNewEquation = true;
+            temp = Double.parseDouble(textView.getText().toString());
+
+        }
+
+    }
 
     private void clearAll() {
-
+        textView.setText(getString(R.string.default_text));
+        operation = '!';
+        isNewEquation = true;
+        isFlatNumber = false;
     }
 
     private void clear() {
