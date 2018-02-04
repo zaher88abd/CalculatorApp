@@ -1,245 +1,220 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#eae9e9"
-    tools:context="ca.zaher.m.calculatorapp.MainActivity"
-    tools:layout_editor_absoluteY="25dp">
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context="ca.zaher.m.calculatorapp.MainActivity">
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="356dp"
+        android:layout_width="360dp"
         android:layout_height="wrap_content"
         android:background="@color/whit"
+        android:enabled="false"
         android:padding="10dp"
         android:text="@string/default_text"
         android:textAlignment="textEnd"
-        android:textSize="50sp"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="14dp"
-        tools:layout_editor_absoluteY="16dp" />
+        android:textSize="50sp" />
 
-    <Button
-        android:id="@+id/btnDivision"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:background="@color/operation_color"
-        android:text="@string/division_operation"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_sqr"
-        app:layout_constraintTop_toTopOf="@+id/btn_sqr"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="292dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/btn_sqr"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:background="@color/sub_operation"
-        android:text="@string/Square_root"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_change"
-        app:layout_constraintTop_toTopOf="@+id/btn_change"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="201dp" />
+        <Button
+            android:id="@+id/btn_clear_all"
+            android:layout_width="@dimen/btn_dim"
+            android:layout_height="@dimen/btn_dim"
+            android:background="@color/sub_operation"
+            android:onClick="btnClick"
+            android:text="@string/all_clear" />
 
-    <Button
-        android:id="@+id/btn_change"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:background="@color/sub_operation"
-        android:text="@string/change_sign"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_clear_all"
-        app:layout_constraintTop_toTopOf="@+id/btn_clear_all"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="109dp" />
+        <Button
+            android:id="@+id/btn_change"
+            android:layout_width="@dimen/btn_dim"
+            android:layout_height="@dimen/btn_dim"
+            android:background="@color/sub_operation"
+            android:onClick="btnClick"
+            android:text="@string/change_sign" />
 
-    <Button
-        android:id="@+id/btn_clear_all"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:background="@color/sub_operation"
-        android:text="@string/all_clear"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="17dp"
-        tools:layout_editor_absoluteY="120dp" />
+        <Button
+            android:id="@+id/btn_sqr"
+            android:layout_width="@dimen/btn_dim"
+            android:layout_height="@dimen/btn_dim"
+            android:background="@color/sub_operation"
+            android:onClick="btnClick"
+            android:text="@string/Square_root" />
 
-    <Button
-        android:id="@+id/btn_mult"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:background="@color/operation_color"
-        android:text="@string/multiply_operation"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_9"
-        app:layout_constraintTop_toTopOf="@+id/btn_9"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="292dp" />
+        <Button
+            android:id="@+id/btnDivision"
+            android:layout_width="@dimen/btn_dim"
+            android:layout_height="@dimen/btn_dim"
+            android:background="@color/operation_color"
+            android:onClick="btnClick"
+            android:text="@string/division_operation" />
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/btn_9"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:background="@color/whit"
-        android:text="@string/num9"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_8"
-        app:layout_constraintTop_toTopOf="@+id/btn_8"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="201dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/btn_8"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:background="@color/whit"
-        android:text="@string/num8"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_7"
-        app:layout_constraintTop_toTopOf="@+id/btn_7"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="109dp" />
+        <Button
+            android:id="@+id/btn_7"
+            android:layout_width="@dimen/btn_dim"
+            android:layout_height="@dimen/btn_dim"
+            android:background="@color/whit"
+            android:onClick="btnClick"
+            android:text="@string/num7" />
 
-    <Button
-        android:id="@+id/btn_7"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:background="@color/whit"
-        android:text="@string/num7"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="17dp"
-        tools:layout_editor_absoluteY="214dp" />
+        <Button
+            android:id="@+id/btn_8"
+            android:layout_width="@dimen/btn_dim"
+            android:layout_height="@dimen/btn_dim"
+            android:background="@color/whit"
+            android:onClick="btnClick"
+            android:text="@string/num8" />
 
-    <Button
-        android:id="@+id/btn_sub"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:background="@color/operation_color"
-        android:text="@string/sub_operation"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_3"
-        app:layout_constraintTop_toTopOf="@+id/btn_3"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="293dp" />
+        <Button
+            android:id="@+id/btn_9"
+            android:layout_width="@dimen/btn_dim"
+            android:layout_height="@dimen/btn_dim"
+            android:background="@color/whit"
+            android:onClick="btnClick"
+            android:text="@string/num9" />
 
-    <Button
-        android:id="@+id/btn_6"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:background="@color/whit"
-        android:text="@string/num_6"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_sum"
-        app:layout_constraintTop_toTopOf="@+id/btn_sum"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="201dp" />
+        <Button
+            android:id="@+id/btn_mult"
+            android:layout_width="@dimen/btn_dim"
+            android:layout_height="@dimen/btn_dim"
+            android:background="@color/operation_color"
+            android:onClick="btnClick"
+            android:text="@string/multiply_operation" />
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/btn_5"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:background="@color/whit"
-        android:text="@string/num_5"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_4"
-        app:layout_constraintTop_toTopOf="@+id/btn_4"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="17dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/btn_4"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:background="@color/whit"
-        android:text="@string/num_4"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_6"
-        app:layout_constraintTop_toTopOf="@+id/btn_6"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="109dp" />
+        <Button
+            android:id="@+id/btn_4"
+            android:layout_width="@dimen/btn_dim"
+            android:layout_height="@dimen/btn_dim"
+            android:background="@color/whit"
+            android:onClick="btnClick"
+            android:text="@string/num_4" />
 
-    <Button
-        android:id="@+id/btn_sum"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:background="@color/operation_color"
-        android:text="@string/sum_operation"
+        <Button
+            android:id="@+id/btn_5"
+            android:layout_width="@dimen/btn_dim"
+            android:layout_height="@dimen/btn_dim"
+            android:background="@color/whit"
+            android:onClick="btnClick"
+            android:text="@string/num_5" />
 
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="293dp"
-        tools:layout_editor_absoluteY="304dp" />
+        <Button
+            android:id="@+id/btn_6"
+            android:layout_width="@dimen/btn_dim"
+            android:layout_height="@dimen/btn_dim"
+            android:background="@color/whit"
+            android:onClick="btnClick"
+            android:text="@string/num_6" />
 
-    <Button
-        android:id="@+id/btn_3"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:background="@color/whit"
-        android:text="@string/num_3"
+        <Button
+            android:id="@+id/btn_sub"
+            android:layout_width="@dimen/btn_dim"
+            android:layout_height="@dimen/btn_dim"
+            android:background="@color/operation_color"
+            android:onClick="btnClick"
+            android:text="@string/sub_operation" />
+    </LinearLayout>
 
-        app:layout_constraintBottom_toBottomOf="@+id/btn_2"
-        app:layout_constraintTop_toTopOf="@+id/btn_2"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="201dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/btn_2"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:background="@color/whit"
-        android:text="@string/num_2"
+        <Button
+            android:id="@+id/btn_1"
+            android:layout_width="@dimen/btn_dim"
+            android:layout_height="@dimen/btn_dim"
+            android:background="@color/whit"
+            android:onClick="btnClick"
+            android:text="@string/num_1" />
 
-        app:layout_constraintBottom_toBottomOf="@+id/btn_1"
-        app:layout_constraintTop_toTopOf="@+id/btn_1"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="109dp" />
+        <Button
+            android:id="@+id/btn_2"
+            android:layout_width="@dimen/btn_dim"
+            android:layout_height="@dimen/btn_dim"
+            android:background="@color/whit"
+            android:onClick="btnClick"
+            android:text="@string/num_2" />
 
-    <Button
-        android:id="@+id/btn_equal"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:background="@color/operation_color"
-        android:text="@string/equal_operation"
+        <Button
+            android:id="@+id/btn_3"
+            android:layout_width="@dimen/btn_dim"
+            android:layout_height="@dimen/btn_dim"
+            android:background="@color/whit"
+            android:onClick="btnClick"
+            android:text="@string/num_3" />
 
-        app:layout_constraintBottom_toBottomOf="@+id/btn_float"
-        app:layout_constraintTop_toTopOf="@+id/btn_float"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="293dp" />
+        <Button
+            android:id="@+id/btn_sum"
+            android:layout_width="@dimen/btn_dim"
+            android:layout_height="@dimen/btn_dim"
+            android:background="@color/operation_color"
+            android:onClick="btnClick"
+            android:text="@string/sum_operation" />
 
-    <Button
-        android:id="@+id/btn_float"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:background="@color/whit"
-        android:text="@string/float_"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_0"
-        app:layout_constraintTop_toTopOf="@+id/btn_0"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="201dp" />
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/btn_0"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:background="@color/whit"
-        android:text="@string/num_0"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_clear"
-        app:layout_constraintTop_toTopOf="@+id/btn_clear"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="109dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/btn_1"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:background="@color/whit"
-        android:text="@string/num_1"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="391dp" />
+        <Button
+            android:id="@+id/btn_clear"
+            android:layout_width="@dimen/btn_dim"
+            android:layout_height="@dimen/btn_dim"
+            android:background="@color/sub_operation"
+            android:onClick="btnClick"
+            android:text="@string/clear" />
 
-    <Button
-        android:id="@+id/btn_clear"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:background="@color/sub_operation"
-        android:text="@string/clear"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="476dp" />
-</android.support.constraint.ConstraintLayout>
+        <Button
+            android:id="@+id/btn_0"
+            android:layout_width="@dimen/btn_dim"
+            android:layout_height="@dimen/btn_dim"
+            android:background="@color/whit"
+            android:onClick="btnClick"
+            android:text="@string/num_0" />
+
+        <Button
+            android:id="@+id/btn_float"
+            android:layout_width="@dimen/btn_dim"
+            android:layout_height="@dimen/btn_dim"
+            android:background="@color/whit"
+            android:onClick="btnClick"
+            android:text="@string/float_" />
+
+
+        <Button
+            android:id="@+id/btn_equal"
+            android:layout_width="@dimen/btn_dim"
+            android:layout_height="@dimen/btn_dim"
+            android:background="@color/operation_color"
+            android:onClick="btnClick"
+            android:text="@string/equal_operation" />
+
+    </LinearLayout>
+
+</LinearLayout>

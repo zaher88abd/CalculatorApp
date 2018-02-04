@@ -5,5 +5,5 @@
     <color name="colorAccent">#FF4081</color>
     <color name="operation_color">#FD9728</color>
     <color name="sub_operation">#BDBDBD</color>
-    <color name="whit">#fff</color>
+    <color name="whit">#FFF</color>
 </resources>

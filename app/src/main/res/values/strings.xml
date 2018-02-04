@@ -19,6 +19,6 @@
     <string name="float_">.</string>
     <string name="num_0">0</string>
     <string name="num_2">2</string>
-    <string name="num_1">1</string>
     <string name="clear">C</string>
+    <string name="num_1">1</string>
 </resources>
