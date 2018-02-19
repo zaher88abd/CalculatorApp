@@ -1,5 +1,6 @@
 package ca.zaher.m.calculatorapp;
 
+import android.annotation.SuppressLint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,13 +13,14 @@ public class MainActivity extends AppCompatActivity {
     boolean isFlatNumber = false; // to know the number is has float point
     double temp; // to save the number
     TextView textView;
-    //// TODO: 2018-02-04 view operation sighn
+    TextView tv_operation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         textView = findViewById(R.id.textView);
+        tv_operation = findViewById(R.id.tv_operation);
     }
 
     public void btnClick(View view) {
@@ -87,48 +89,61 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private void showResult() {
         if (operation != '!' && !isNewEquation)
             switch (operation) {
                 case '+':
-                    textView.setText(String.valueOf(temp + Double.parseDouble(textView.getText().toString())));
+                    setTVResult(temp + Double.parseDouble(textView.getText().toString()));
                     break;
                 case '-':
-                    textView.setText(String.valueOf(temp - Double.parseDouble(textView.getText().toString())));
+                    setTVResult(temp - Double.parseDouble(textView.getText().toString()));
                     break;
                 case '*':
-                    textView.setText(String.valueOf(temp * Double.parseDouble(textView.getText().toString())));
+                    setTVResult(temp * Double.parseDouble(textView.getText().toString()));
                     break;
                 case '/':
-                    if (!textView.getText().toString().equals("0"))
-                        textView.setText(String.valueOf(temp / Double.parseDouble(textView.getText().toString())));
+                    if (!textView.getText().toString().equals("0")) {
+                        setTVResult(temp / Double.parseDouble(textView.getText().toString()));
+                    } else {
+                        textView.setText(R.string.divied_by_zero);
+                    }
                     break;
             }
         operation = '!';
         isNewEquation = true;
+        tv_operation.setText("");
     }
 
     private void enterOperation(char c) {
-        if (operation == '!' && !isNewEquation) {
+        tv_operation.setText(String.valueOf(c));
+        if (operation == '!') {
             operation = c;
             isNewEquation = true;
             temp = Double.parseDouble(textView.getText().toString());
-        } else if (operation != '!' && isNewEquation) {
+        } else if (isNewEquation) {
             operation = c;
-        } else if (operation != '!' && !isNewEquation) {
+        } else {
             switch (operation) {
                 case '+':
-                    textView.setText(String.valueOf(temp + Double.parseDouble(textView.getText().toString())));
+                    setTVResult(temp + Double.parseDouble(textView.getText().toString()));
+//                    textView.setText(String.valueOf(temp + Double.parseDouble(textView.getText().toString())));
                     break;
                 case '-':
-                    textView.setText(String.valueOf(temp - Double.parseDouble(textView.getText().toString())));
+                    setTVResult(temp - Double.parseDouble(textView.getText().toString()));
+//                    textView.setText(String.valueOf(temp - Double.parseDouble(textView.getText().toString())));
                     break;
                 case '*':
-                    textView.setText(String.valueOf(temp * Double.parseDouble(textView.getText().toString())));
+                    setTVResult(temp * Double.parseDouble(textView.getText().toString()));
+//                    textView.setText(String.valueOf(temp * Double.parseDouble(textView.getText().toString())));
                     break;
                 case '/':
                     if (!textView.getText().toString().equals("0"))
-                        textView.setText(String.valueOf(temp / Double.parseDouble(textView.getText().toString())));
+                        setTVResult(temp / Double.parseDouble(textView.getText().toString()));
+//                        textView.setText(String.valueOf(temp / Double.parseDouble(textView.getText().toString())));
+                    else {
+                        textView.setText(R.string.divied_by_zero);
+                    }
                     break;
             }
             operation = c;
@@ -142,6 +157,7 @@ public class MainActivity extends AppCompatActivity {
     private void clearAll() {
         textView.setText(getString(R.string.default_text));
         operation = '!';
+        tv_operation.setText("");
         isNewEquation = true;
         isFlatNumber = false;
         temp = 0;
@@ -154,7 +170,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void enterFloatNumber() {
         if (!isFlatNumber) {
-            textView.setText(textView.getText().toString() + ".");
+            String temp_string = textView.getText().toString() + ".";
+            textView.setText(temp_string);
             isNewEquation = false;
             isFlatNumber = true;
         }
@@ -166,7 +183,18 @@ public class MainActivity extends AppCompatActivity {
             textView.setText(num);
             isNewEquation = false;
         } else {
-            textView.setText(textView.getText().toString() + num);
+            String temp_string = textView.getText().toString() + num;
+            textView.setText(temp_string);
         }
+    }
+
+    public void setTVResult(double value) {
+        if ((value - (long) value) > 0) {
+            textView.setText(String.valueOf(value));
+        } else {
+            textView.setText(String.valueOf((long) value));
+
+        }
+
     }
 }
