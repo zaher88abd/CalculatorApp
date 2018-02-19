@@ -74,11 +74,10 @@ public class MainActivity extends AppCompatActivity {
                 enterOperation('/');
                 break;
             case R.id.btn_sqr:
-                textView.setText(String.valueOf(Math.sqrt(Double.parseDouble(textView.getText().toString()))));
-
+                setTVResult(Math.sqrt(Double.parseDouble(textView.getText().toString())));
                 break;
             case R.id.btn_change:
-                textView.setText(String.valueOf(-1 * Double.parseDouble(textView.getText().toString())));
+                setTVResult(-1 * Double.parseDouble(textView.getText().toString()));
                 break;
             case R.id.btn_equal:
                 showResult();
